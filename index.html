@@ -4,26 +4,30 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+
+    <script type='text/javascript' src='http://code.jquery.com/jquery-1.8.2.js'></script>
+    <title>Opskrift</title>
 </head>
 
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+
+    <p><a id="button" href="https://madplan.nu/recipe.htm?recipeid=10000">Mangler en idé?</a>.</p>
     <script>
-        $(document).ready(function () {
+        var yourElement = document.getElementById('button');
 
-            $.ajax({
-                type: "GET",
-                url: "https://madplan.nu/recipe.htm?recipeid=11500",
-                success: function (result, status, xhr) {
-                    console.log(result, status, xhr)
-                },
-                error: function (xhr, status, error) {
-                    alert("Result: " + status + " " + error + " " + xhr.status + " " + xhr.statusText)
-                }
-            });
+        function getRandomInt(max) {
+            return Math.floor(Math.random() * max);
+        }
+        function pad(num, size) {
+            num = num.toString();
+            while (num.length < size) num = "0" + num;
+            return num;
+        }
 
-        });
+        var string = 'https://madplan.nu/recipe.htm?recipeid=1' + pad(getRandomInt(2794 + 1), 4);
+        yourElement.setAttribute('href', string);
+
+        $('head').append('<meta http-equiv="refresh" content="2; URL=' + string + '" />');
     </script>
 
 </body>
